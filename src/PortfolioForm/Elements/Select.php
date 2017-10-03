@@ -40,7 +40,7 @@ class Select extends InputField
 
     public function render()
     {
-        $result = '<div class="input-field">';
+        $result = '<div class="form-field">';
             foreach ($this->addons as $addon) {
                 $result .= $addon;
             }

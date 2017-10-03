@@ -13,6 +13,7 @@ use bcdbuddy\PortfolioForm\Elements\FormOpen;
 use bcdbuddy\PortfolioForm\Elements\Hidden;
 use bcdbuddy\PortfolioForm\Elements\InputField;
 use bcdbuddy\PortfolioForm\Elements\Label;
+use bcdbuddy\PortfolioForm\Elements\Number;
 use bcdbuddy\PortfolioForm\Elements\Password;
 use bcdbuddy\PortfolioForm\Elements\RadioButton;
 use bcdbuddy\PortfolioForm\Elements\Select;
@@ -175,7 +176,7 @@ class PortfolioForm
         return new Button($value, $name);
     }
 
-    public function submit($value = 'Submit', $class='waves-effect waves-light btn')
+    public function submit($value = 'Submit', $class='')
     {
         $submit = new Submit($value);
         $submit->addClass($class);
@@ -192,6 +193,21 @@ class PortfolioForm
         $this->renderErrorIfAny($select, $name);
 
         return $select;
+    }
+
+
+
+    public function number($label, $name)
+    {
+        $text = new Number($label, $name);
+
+        if (!is_null($value = $this->getValueFor($name))) {
+            $text->value($value);
+        }
+
+        $this->renderErrorIfAny($text, $name);
+
+        return $text;
     }
 
     public function label($label)
@@ -328,9 +344,9 @@ class PortfolioForm
     private function renderErrorIfAny(InputField $element, $name)
     {
         if ($this->hasError($name)) {
-            $element->addClass("invalid");
-            $element->getLabel()->attribute("data-error", $this->getError($name))
-                ->addClass('active');
+            $element->parentClass("with-error")->parentClass("has-focus");
+            $element->getHelperBloc()->content($this->getError($name));
+
         }
     }
 }

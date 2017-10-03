@@ -7,6 +7,8 @@ class InputField extends Input{
     protected $label;
     protected $label_string;
     protected $addons = [];
+    protected $helperBloc;
+    protected $addonClass;
 
     function __construct($label, $name)
     {
@@ -15,16 +17,19 @@ class InputField extends Input{
         $this->label = new Label($label);
         $this->label->attribute("for", $name);
         $this->label_string = $label;
+        $this->helperBloc = new HelperBloc();
+        $this->addonClass = [];
     }
 
     public function render()
     {
-        $result = '<div class="form-input">';
+        $result = '<div class="form-field '. implode(" ", $this->addonClass) .'">';
         foreach ($this->addons as $addon) {
             $result .= $addon;
         }
-        $result .= parent::render();
         $result .= $this->label;
+        $result .= parent::render();
+        $result .= $this->helperBloc;
         $result .= '</div>';
         return $result;
     }
@@ -50,4 +55,14 @@ class InputField extends Input{
         return $this->label;
     }
 
+
+    public function getHelperBloc () {
+        return $this->helperBloc;
+    }
+
+    public function parentClass ($class)
+    {
+        $this->addonClass[] = $class;
+        return $this;
+    }
 }

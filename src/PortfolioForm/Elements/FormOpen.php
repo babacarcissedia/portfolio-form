@@ -7,6 +7,7 @@ class FormOpen extends Element
     protected $attributes = [
         'method' => 'POST',
         'action' => '',
+        'class' => 'form'
     ];
 
     protected $token;

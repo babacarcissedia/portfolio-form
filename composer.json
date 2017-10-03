@@ -18,8 +18,8 @@
         "satooshi/php-coveralls": "^1.0"
     },
     "autoload": {
-        "psr-0": {
-            "bcdbuddy\\PortfolioForm": "src/"
+        "psr-4": {
+            "bcdbuddy\\": "src/"
         }
     },
     "autoload-dev": {

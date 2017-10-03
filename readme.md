@@ -9,7 +9,10 @@ PortfolioForm
 - [Using material icons](#using-material-icons)
 - [Automatic Validation State](#automatic-validation-state)
 - [Model Binding](#model-binding)
+- [Different types](#different-types)
 - [Advance usages](#advance-usages)
+- [Todos](#todos)
+- [Credits](#credits)
 - [Licence](#licence)
 
 ## Installation
@@ -77,7 +80,7 @@ MaterialForms lets you create a label and form control and wrap it all in a form
 
 ```php
 //  <form method="POST">
-//    <div class="input-field">
+//    <div class="form-field">
 //      <label for="field_name">Field Label</label>
 //      <input type="text" id="field_name" name="field_name">
 //    </div>
@@ -96,13 +99,13 @@ If you need to customize your form elements in any way (such as adding a default
 Attributes can be added either via the `attribute` method, or by simply using the attribute name as the method name.
 
 ```php
-// <div class="input-field">
+// <div class="form-field">
 //    <input type="text" id="first_name" name="first_name" placeholder="John Doe">
 //    <label for="first_name">First Name</label>
 // </div>
 PortfolioForm::text('First Name', 'first_name')->placeholder('John Doe');
 
-// <div class="input-field">
+// <div class="form-field">
 //   <select  id="color" name="color">
 //     <option value="red">Red</option>
 //     <option value="green" selected>Green</option>
@@ -114,7 +117,7 @@ PortfolioForm::select('Color', 'color')->options(['red' => 'Red', 'green' => 'Gr
 // <form method="GET" action="/users">
 PortfolioForm::open()->get()->action('/users');
 
-// <div class="input-field">
+// <div class="form-field">
 //    <label for="first_name">First Name</label>
 //    <input type="text" id="first_name" name="first_name" value="John Doe">
 // </div>
@@ -148,23 +151,23 @@ Typical Materialize form boilerplate might look something like this:
 
 ```html
 <form>
-  <div class="input-field">
+  <div class="form-field">
     <input type="text" name="first_name" id="first_name">
     <label for="first_name">First Name</label>
   </div>
-  <div class="input-field">
+  <div class="form-field">
     <input type="text" name="last_name" id="last_name">
     <label for="last_name">Last Name</label>
   </div>
-  <div class="input-field">
+  <div class="form-field">
     <input type="date" name="date_of_birth" id="date_of_birth">
     <label for="date_of_birth">Date of Birth</label>
   </div>
-  <div class="input-field">
+  <div class="form-field">
     <input type="email" name="email" id="email">
     <label for="email">Email address</label>
   </div>
-  <div class="input-field">
+  <div class="form-field">
     <input type="password" name="password" id="password">
     <label for="password">Password</label>
   </div>
@@ -192,7 +195,7 @@ Another nice thing about MaterialForms is that it will automatically add error s
 Essentially, this takes code that would normally look like this:
 
 ```php
-<div class="input-field">
+<div class="form-field">
   <input type="text" id="first_name" data-error="{!! $errors->first('first_name')"/>
   <label for="first_name">First Name</label>
 </div>
@@ -216,11 +219,26 @@ PortfolioForm::open()->action( route('users.update', $user) )->put()
 PortfolioForm::bind($user)
 PortfolioForm::close()
 ```
+## Different types
+```php
+    {!! PortfolioForm::text("Field label", "field_name") !!}
+    {!! PortfolioForm::textarea("Field label", "field_name") !!}
+    {!! PortfolioForm::email("Field label", "field_name") !!}
+    {!! PortfolioForm::password("Field label", "field_name") !!}
+    {!! PortfolioForm::file("Field label", "field_name") !!}    
+    {!! PortfolioForm::checkbox("Field label", "field_name") !!}
+    {!! PortfolioForm::datetime("Field label", "field_name") !!}
+    {!! PortfolioForm::date("Field label", "field_name") !!}
+    {!! PortfolioForm::time("Field label", "field_name") !!}
+
+
+
+```
 
 ## Advance usages
 ```php
 {!! PortfolioForm::open() !!}
-    {!! PortfolioForm::text("Last name", "last_name")->data("length", 10) !!}
+    {!! PortfolioForm::text("Last name", "last_name") !!}
     {!! PortfolioForm::email("Email", "email") !!}
     {!! PortfolioForm::password("Password", "password") !!}
     {!! PortfolioForm::file("File", "file")->placeholder("some file to upload") !!}
@@ -240,10 +258,14 @@ PortfolioForm::close()
 ![result](output.png)
 
 
+## Todos
+- radio input
+- switch input
+- file input
+
 ## Credits
 
 - [Adam Wathan BootForms](https://github.com/adamwathan/bootforms)
-
 
 ## Licence 
 [MIT](LICENSE)

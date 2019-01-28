@@ -23,7 +23,7 @@ class Button extends Element
         foreach ($this->addons as $addon) {
             $addons .= $addon;
         }
-        return sprintf('<button %s>%s %s</button>',$this->renderAttributes(), $addons, $this->value);
+        return sprintf('<button %s>%s %s</button>',$this->renderAttributes(), $this->value, $addons);
     }
 
     public function value($value)
@@ -31,9 +31,8 @@ class Button extends Element
         $this->value = $value;
     }
 
-    public function icon ($icon_name, $class='right') {
-        $icon = new MaterialIcon($icon_name);
-        $icon->addClass($class);
+    public function icon ($icon_name) {
+        $icon = new FontAwesomeIcon($icon_name);
         $this->addon($icon);
         return $this;
     }

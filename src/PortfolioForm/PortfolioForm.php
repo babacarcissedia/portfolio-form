@@ -18,8 +18,9 @@ use bcdbuddy\PortfolioForm\Elements\Password;
 use bcdbuddy\PortfolioForm\Elements\RadioButton;
 use bcdbuddy\PortfolioForm\Elements\Select;
 use bcdbuddy\PortfolioForm\Elements\Submit;
-use bcdbuddy\PortfolioForm\Elements\SwitchCheck;
+use bcdbuddy\PortfolioForm\Elements\SwitchCheckBox;
 use bcdbuddy\PortfolioForm\Elements\Text;
+use bcdbuddy\PortfolioForm\Elements\Tel;
 use bcdbuddy\PortfolioForm\Elements\TextArea;
 use bcdbuddy\PortfolioForm\ErrorStore\ErrorStoreInterface;
 use bcdbuddy\PortfolioForm\OldInput\OldInputInterface;
@@ -75,6 +76,19 @@ class PortfolioForm
     public function text($label, $name)
     {
         $text = new Text($label, $name);
+
+        if (!is_null($value = $this->getValueFor($name))) {
+            $text->value($value);
+        }
+
+        $this->renderErrorIfAny($text, $name);
+
+        return $text;
+    }
+
+    public function tel($label, $name)
+    {
+        $text = new Tel($label, $name);
 
         if (!is_null($value = $this->getValueFor($name))) {
             $text->value($value);
@@ -171,9 +185,9 @@ class PortfolioForm
         return $radio;
     }
 
-    public function button($value, $name = null)
+    public function button($value)
     {
-        return new Button($value, $name);
+        return new Button($value);
     }
 
     public function submit($value = 'Submit', $class='')
@@ -336,8 +350,8 @@ class PortfolioForm
     }
 
 
-    public function switchCheck ($label1, $label2, $name) {
-        $switch = new SwitchCheck($label1, $label2, $name);
+    public function switchCheckbox ($label, $name) {
+        $switch = new SwitchCheckBox($label, $name);
         return $switch;
     }
 

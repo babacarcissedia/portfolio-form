@@ -11,6 +11,7 @@ abstract class Input extends Element
     function __construct($name)
     {
         $this->attributes["name"] = $name;
+        $this->attributes["id"] = $name;
     }
 
     public function render()

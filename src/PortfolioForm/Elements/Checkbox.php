@@ -9,10 +9,14 @@ class Checkbox extends InputField
     ];
     protected $checked;
     protected $oldValue;
+    protected $checkbox_class = "form-field-checkbox";
 
     public function __construct($label, $name, $value = 1)
     {
         parent::__construct($label, $name);
+        if ($value) {
+            $this->attribute("checked", "checked");
+        }
 
         $this->setValue($value);
     }
@@ -91,17 +95,16 @@ class Checkbox extends InputField
         }
     }
 
-    public function render()
-    {
-        $this->checkBinding();
-
-        $result = '<p>';
-        foreach ($this->addons as $addon) {
-            $result .= $addon;
-        }
-        $result .= Input::render();
-        $result .= $this->label;
-        $result .= '</p>';
-        return $result;
+    public function render () {
+        return implode('', [
+            sprintf('<p class="%s">', $this->checkbox_class),
+                sprintf('<input %s/>', $this->renderAttributes()),
+                    sprintf('<label for="%s">', $this->attributes['name']),
+                        '<span>',
+                            $this->label_string,
+                        '</span>',
+                    '</label>',
+            '</p>'
+        ]);
     }
 }

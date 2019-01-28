@@ -2,6 +2,8 @@
 
 namespace bcdbuddy\PortfolioForm\Elements;
 
-class TextAreaIcon extends IconInputField
+
+class Icon extends FontAwesomeIcon
 {
+
 }

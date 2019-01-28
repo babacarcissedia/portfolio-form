@@ -3,10 +3,10 @@
 namespace bcdbuddy\PortfolioForm\Elements;
 
 
-class MaterialIcon extends Element
+class FontAwesomeIcon extends Element
 {
     protected $attributes = [
-        "class" => "material-icons"
+        "class" => "fa"
     ];
     private $name;
     private $prefix;
@@ -14,6 +14,7 @@ class MaterialIcon extends Element
     function __construct($name, $prefix=false)
     {
         $this->name = $name;
+        $this->addClass('fa-' . $this->name);
         $this->prefix = $prefix;
     }
 
@@ -22,8 +23,7 @@ class MaterialIcon extends Element
         return implode('', [
             '<i ',
             $this->renderAttributes(),
-            ($this->prefix) ? 'prefix' : '',
-            '">'. $this->name .'</i>'
+            '></i>'
         ]);
     }
 }

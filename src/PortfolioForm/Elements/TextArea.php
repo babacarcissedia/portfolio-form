@@ -8,23 +8,23 @@ class TextArea extends InputField
         'name' => '',
         'rows' => 10,
         'cols' => 50,
-        "class" => "materialize-textarea"
+        "class" => ""
     ];
 
     protected $value;
 
     public function render()
     {
-        $result = '<div class="input-field">';
+        $result = '<div class="form-field">';
         foreach ($this->addons as $addon) {
             $result .= $addon;
         }
+        $result .= $this->label;
         $result .= implode([
             sprintf('<textarea%s>', $this->renderAttributes()),
             $this->value,
             '</textarea>',
         ]);
-        $result .= $this->label;
         $result .= '</div>';
         return $result;
     }

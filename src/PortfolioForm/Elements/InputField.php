@@ -13,7 +13,6 @@ class InputField extends Input{
     function __construct($label, $name)
     {
         parent::__construct($name);
-        $this->attribute("id", $name);
         $this->label = new Label($label);
         $this->label->attribute("for", $name);
         $this->label_string = $label;

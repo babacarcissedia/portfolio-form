@@ -6,6 +6,7 @@ class Submit extends Button
 {
     protected $attributes = [
         "type" => "submit",
+        "class" => "button"
 
     ];
     public function render()

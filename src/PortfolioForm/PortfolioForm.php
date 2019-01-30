@@ -224,6 +224,20 @@ class PortfolioForm
         return $text;
     }
 
+
+    public function phone ($label, $name)
+    {
+        $text = new Phone($label, $name);
+
+        if (!is_null($value = $this->getValueFor($name))) {
+            $text->value($value);
+        }
+
+        $this->renderErrorIfAny($text, $name);
+
+        return $text;
+    }
+
     public function label($label)
     {
         return new Label($label);

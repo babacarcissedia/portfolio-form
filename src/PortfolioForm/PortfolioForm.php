@@ -110,9 +110,9 @@ class PortfolioForm
         return $date;
     }
 
-    public function dateTimeLocal($name)
+    public function datetime($label, $name)
     {
-        $date = new DateTimeLocal($name);
+        $date = new DateTimeLocal($label, $name);
 
         if (!is_null($value = $this->getValueFor($name))) {
             $date->value($value);
